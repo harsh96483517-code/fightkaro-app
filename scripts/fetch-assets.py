@@ -7,7 +7,8 @@ internet, so CI pulls exactly those files here, right before the web assets are
 synced into the Android project.
 
 Every path is derived from the game's own JavaScript, so the list stays correct if
-the build hashes change. Files that the server does not have (a few internal SFX
+the build hashes change. That includes the Draco decoder (`.wasm` + `.js`) the 3D
+engine needs before it can decompress the fighter models. Files that the server does not have (a few internal SFX
 names are only fallbacks) are skipped, and the script always exits 0 — a missing
 sound must never fail the APK build.
 """
@@ -23,7 +24,7 @@ WWW = "www"
 TIMEOUT = 60
 UA = "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Mobile Safari/537.36"
 
-ASSET_EXT = r"(?:glb|gltf|mp3|ogg|wav|m4a|ktx2|hdr|bin|webp|jpg|jpeg)"
+ASSET_EXT = r"(?:glb|gltf|mp3|ogg|wav|m4a|ktx2|hdr|bin|webp|jpg|jpeg|wasm|js)"
 PATTERN = re.compile(r"[A-Za-z0-9_][A-Za-z0-9_./-]*\." + ASSET_EXT)
 WANTED_PREFIX = ("assets/", "models/", "audio/", "sfx/", "sounds/")
 
