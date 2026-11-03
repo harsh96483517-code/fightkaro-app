@@ -1,0 +1,11 @@
+{
+  "appId": "com.harsh.fightkaro",
+  "appName": "FightKaro",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": false,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": false
+  },
+  "backgroundColor": "#120a06"
+}

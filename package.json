@@ -1,0 +1,15 @@
+{
+  "name": "fightkaro-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Offline Android wrapper for the FightKaro / Sansad Showdown browser fighter",
+  "scripts": {
+    "sync": "npx cap sync android",
+    "apk": "npm run sync && cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/cli": "^6.2.0",
+    "@capacitor/core": "^6.2.0"
+  }
+}
