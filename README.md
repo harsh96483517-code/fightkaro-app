@@ -9,6 +9,10 @@ difficulty, and fight in landscape.
 - `www/` — the complete game bundle (HTML, JS, CSS, fighter portraits, fonts), with the Google
   Fonts and the network-only extras pulled local so the app works with no connection.
 - `capacitor.config.json` — app id `com.harsh.fightkaro`, display name `FightKaro`, web root `www`.
+- `scripts/fetch-assets.py` — the mirrored `www/` shell ships without the 3D fighter models
+  (`models/*.glb`) and the soundtrack/SFX (`assets/*.mp3`), so CI downloads exactly those files
+  from the live site right before packaging. They are not committed, which keeps the repository
+  small; every build fetches a fresh copy.
 - `scripts/patch-android.py` — post-generate tweaks: landscape lock, immersive fullscreen,
   keep-screen-on, larger heap, and launcher icons generated from the game's own icon.
 - `.github/workflows/build-apk.yml` — builds the APK on every push to `main`, uploads it as a
@@ -32,6 +36,7 @@ add it as repository secrets and switch the Gradle task to `assembleRelease`.
 
 ```bash
 npm install
+python3 scripts/fetch-assets.py   # needs internet: pulls models + audio from the live site
 npx cap add android
 python3 -m pip install pillow
 python3 scripts/patch-android.py
